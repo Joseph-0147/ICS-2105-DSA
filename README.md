@@ -1,6 +1,9 @@
 # ICS-2105-DSA
+Joseph Kariuki 
+SCT212-0147/2022
+Computer Technology
 Assignment folder contains:
   -Lab1
   -Quiz 1
-  folders which contain the assignmen
+ Each folder contains the respective assignment
   
