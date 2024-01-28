@@ -22,3 +22,5 @@ int numsSize = sizeof(nums) / sizeof(nums[0]);
 printf("%s\n", containsDuplicate(nums, numsSize) ? "true" : "false");  
 return 0;
 }
+
+// output:true
