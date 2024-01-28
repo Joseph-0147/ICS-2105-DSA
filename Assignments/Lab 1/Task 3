@@ -2,7 +2,7 @@
 #include <string>
 
 const int MAX_STUDENTS = 40;
-const int MAX_COURSES = 2; // Assuming each student is enrolled in at most two courses
+const int MAX_COURSES = 8; 
 
 // Structure to represent a course
 struct Course {
