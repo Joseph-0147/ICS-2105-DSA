@@ -1,2 +1,6 @@
 # ICS-2105-DSA
-Assignments
+Assignment folder contains:
+  -Lab1
+  -Quiz 1
+  folders which contain the assignmen
+  
