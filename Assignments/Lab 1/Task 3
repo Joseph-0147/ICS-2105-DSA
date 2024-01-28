@@ -1,0 +1,175 @@
+#include <iostream>
+#include <string>
+
+const int MAX_STUDENTS = 40;
+const int MAX_COURSES = 2; // Assuming each student is enrolled in at most two courses
+
+// Structure to represent a course
+struct Course {
+    std::string course_code;
+    std::string course_name;
+};
+
+// Structure to represent a grade
+struct Grade {
+    int mark;
+    char the_grade;
+};
+
+// Structure to represent a student
+struct Student {
+    std::string registration_number;
+    std::string name;
+    int age;
+    Course courses[MAX_COURSES];
+    Grade grades[MAX_COURSES];
+};
+
+// Function to calculate the grade based on the mark
+char calculateGrade(int mark) {
+    if (mark > 69) return 'A';
+    else if (mark > 59) return 'B';
+    else if (mark > 49) return 'C';
+    else if (mark > 39) return 'D';
+    else return 'E';
+}
+
+// Function to add a student and initialize their details
+void addStudent(Student students[], int& totalStudents) {
+    if (totalStudents < MAX_STUDENTS) {
+        Student newStudent;
+        
+        std::cout << "Enter registration number: ";
+        std::cin >> newStudent.registration_number;
+
+        std::cout << "Enter name: ";
+        std::cin >> newStudent.name;
+
+        std::cout << "Enter age: ";
+        std::cin >> newStudent.age;
+
+        for (int i = 0; i < MAX_COURSES; i++) {
+            std::cout << "Enter course " << i + 1 << " code: ";
+            std::cin >> newStudent.courses[i].course_code;
+
+            std::cout << "Enter course " << i + 1 << " name: ";
+            std::cin >> newStudent.courses[i].course_name;
+
+            // Initialize grades to -1 to indicate that they haven't been calculated yet
+            newStudent.grades[i].mark = -1;
+            newStudent.grades[i].the_grade = ' ';
+        }
+
+        students[totalStudents++] = newStudent;
+        std::cout << "Student added successfully.\n";
+    } else {
+        std::cout << "Maximum number of students reached.\n";
+    }
+}
+
+// Function to edit a student's details
+void editStudent(Student students[], int totalStudents) {
+    std::string regNum;
+    std::cout << "Enter registration number of the student to edit: ";
+    std::cin >> regNum;
+
+    for (int i = 0; i < totalStudents; i++) {
+        if (students[i].registration_number == regNum) {
+            std::cout << "Enter new registration number: ";
+            std::cin >> students[i].registration_number;
+
+            std::cout << "Enter new name: ";
+            std::cin >> students[i].name;
+
+            std::cout << "Enter new age: ";
+            std::cin >> students[i].age;
+
+            std::cout << "Student details updated successfully.\n";
+            return;
+        }
+    }
+
+    std::cout << "Student not found.\n";
+}
+
+// Function to add marks and calculate grades for a student
+void addMarks(Student students[], int totalStudents) {
+    std::string regNum;
+    std::cout << "Enter registration number of the student: ";
+    std::cin >> regNum;
+
+    for (int i = 0; i < totalStudents; i++) {
+        if (students[i].registration_number == regNum) {
+            for (int j = 0; j < MAX_COURSES; j++) {
+                std::cout << "Enter mark for course " << j + 1 << ": ";
+                std::cin >> students[i].grades[j].mark;
+
+                // Calculate grade based on the mark
+                students[i].grades[j].the_grade = calculateGrade(students[i].grades[j].mark);
+            }
+
+            std::cout << "Marks added and grades calculated successfully.\n";
+            return;
+        }
+    }
+
+    std::cout << "Student not found.\n";
+}
+
+// Function to display student details
+void displayStudents(Student students[], int totalStudents) {
+    for (int i = 0; i < totalStudents; i++) {
+        std::cout << "Student " << i + 1 << ":\n";
+        std::cout << "Registration Number: " << students[i].registration_number << "\n";
+        std::cout << "Name: " << students[i].name << "\n";
+        std::cout << "Age: " << students[i].age << "\n";
+
+        for (int j = 0; j < MAX_COURSES; j++) {
+            std::cout << "Course " << j + 1 << ":\n";
+            std::cout << "  Code: " << students[i].courses[j].course_code << "\n";
+            std::cout << "  Name: " << students[i].courses[j].course_name << "\n";
+            std::cout << "  Grade: " << students[i].grades[j].the_grade << "\n";
+        }
+
+        std::cout << "----------------------------------------\n";
+    }
+}
+
+int main() {
+    Student students[MAX_STUDENTS];
+    int totalStudents = 0;
+    int choice;
+
+    do {
+        std::cout << "\nMenu:\n";
+        std::cout << "1. Add Student\n";
+        std::cout << "2. Edit Student Details\n";
+        std::cout << "3. Add Marks and Calculate Grades\n";
+        std::cout << "4. Display Students\n";
+        std::cout << "0. Exit\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        switch (choice) {
+            case 1:
+                addStudent(students, totalStudents);
+                break;
+            case 2:
+                editStudent(students, totalStudents);
+                break;
+            case 3:
+                addMarks(students, totalStudents);
+                break;
+            case 4:
+                displayStudents(students, totalStudents);
+                break;
+            case 0:
+                std::cout << "Exiting program.\n";
+                break;
+            default:
+                std::cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 0);
+
+    return 0;
+}
