@@ -2,7 +2,7 @@
 #include <string.h>
 
 #define MAX_STUDENTS 40
-#define MAX_COURSES 2
+#define MAX_COURSES 8
 
 // Structure to represent a course
 struct Course {
