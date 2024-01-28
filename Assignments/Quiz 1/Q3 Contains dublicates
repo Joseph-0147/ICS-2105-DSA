@@ -17,8 +17,8 @@ bool containsDuplicate(int* nums, int numsSize){
     return false;
 }
 main(){
-int nums[] = {1, 2, 3};
+int nums[] = {1, 2, 3, 4, 4, 5, 6};
 int numsSize = sizeof(nums) / sizeof(nums[0]);
-printf("%s\n", containsDuplicate(nums, numsSize) ? "true" : "false");  // Output: true
+printf("%s\n", containsDuplicate(nums, numsSize) ? "true" : "false");  
 return 0;
 }
