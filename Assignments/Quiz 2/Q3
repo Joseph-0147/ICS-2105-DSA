@@ -1,0 +1,39 @@
+class ListNode:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+class ReverseLinkedList:
+    def reverseListRecursive(self, head):
+        # Base case: empty list or single node
+        if head is None or head.next is None:
+            return head
+
+        # Recursively reverse the rest of the list
+        newHead = self.reverseListRecursive(head.next)
+
+        # Reverse the link between the current and next node
+        head.next.next = head
+        head.next = None  # Set the current node's next pointer to null (end of the reversed list)
+
+        return newHead  # Return the new head of the reversed list
+
+if __name__ == "__main__":
+    
+    head = ListNode(5)
+    head.next = ListNode(15)
+    head.next.next = ListNode(25)
+    head.next.next.next = ListNode(35)
+    head.next.next.next.next = ListNode(45)
+    head.next.next.next.next.next = ListNode(55)
+    head.next.next.next.next.next.next = ListNode(65)
+    head.next.next.next.next.next.next.next= ListNode(75)
+
+    solution = ReverseLinkedList()
+    reversedHead = solution.reverseListRecursive(head)
+
+    # Print the reversed linked list
+    while reversedHead is not None:
+        print(reversedHead.val, end=" ")
+        reversedHead = reversedHead.next
+    # Output: 5 4 3 2 1
