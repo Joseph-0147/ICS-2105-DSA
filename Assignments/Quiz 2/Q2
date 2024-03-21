@@ -1,0 +1,4 @@
+It is not possible to solve the problem of finding the starting node of a cycle in a linked list using O(1) space complexity. 
+This is because finding the cycle start requires identifying a specific node within the cycle. 
+This inherently involves traversing the linked list and potentially comparing node pointers.
+Constant space O(1) wouldn't allow for storing additional information about visited nodes or maintaining pointers for comparison.
