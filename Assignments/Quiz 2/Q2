@@ -1,4 +1,18 @@
-It is not possible to solve the problem of finding the starting node of a cycle in a linked list using O(1) space complexity. 
-This is because finding the cycle start requires identifying a specific node within the cycle. 
-This inherently involves traversing the linked list and potentially comparing node pointers.
-Constant space O(1) wouldn't allow for storing additional information about visited nodes or maintaining pointers for comparison.
+class ListNode:
+    def _init_(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def detectCycle(self, head: ListNode) -> ListNode:
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:  # Cycle detected
+                slow = head 
+                while slow != fast:  # Find the start
+                     slow = slow.next
+                     fast = fast.next
+                return slow
+        return None  # No cycle
