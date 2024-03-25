@@ -1,25 +1,27 @@
 Pseudocode for Cycle Detection and Finding Cycle Start using O(1)
+
+
 Function has_cycle(head):
 
-Input: head (head node of the linked list)
+Input: head     #head node of the linked list
 
-1. Initialize two pointers: slow and fast (both pointing to head)
+1. Initialize two pointers: slow and fast        #both pointing to head
 2. While fast and fast.next are not None:
     - slow = slow.next
     - fast = fast.next.next
-3. If fast or fast.next is None (no cycle):
+3. If fast or fast.next is None :    #no cycle
     - Return False
-4. Otherwise (cycle detected):
+4. Otherwise :      #cycle detected
     - Return True
 Function detect_cycle(head):
 
-Input: head (head node of the linked list)
+Input: head 
 
 **Precondition:** has_cycle(head) confirms a cycle exists
 
 1. Initialize two pointers: slow and current
     - slow = head
-    - current = head (meeting point found in has_cycle)
+    - current = head        #meeting point found in has_cycle
 2. While slow != current:
     - slow = slow.next
     - current = current.next
