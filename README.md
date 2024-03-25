@@ -5,5 +5,6 @@ Computer Technology
 Assignment folder contains:
   -Lab1
   -Quiz 1
+  -Quiz 2
  Each folder contains the respective assignment
   
